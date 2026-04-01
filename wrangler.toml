@@ -1,0 +1,9 @@
+name            = "yt-api"
+main            = "src/worker.js"
+compatibility_date = "2024-09-23"
+
+# Optional: bind a custom domain under Workers → Triggers in the dashboard
+# routes = [{ pattern = "api.yourdomain.com/*", zone_name = "yourdomain.com" }]
+
+# Secrets (do NOT put values here — use `wrangler secret put` instead):
+#   wrangler secret put YOUTUBE_API_KEY
