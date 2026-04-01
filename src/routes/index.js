@@ -1,0 +1,94 @@
+const HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>YouTube API</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:monospace;background:#0d0d0d;color:#e0e0e0;max-width:860px;margin:40px auto;padding:0 24px}
+    h1{color:#ff4444;margin-bottom:6px}
+    .badges{margin-bottom:28px;display:flex;gap:8px;flex-wrap:wrap}
+    .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75em}
+    .b1{background:#1a2a3a;color:#64b5f6;border:1px solid #64b5f6}
+    .b2{background:#1a3a1a;color:#4caf50;border:1px solid #4caf50}
+    h2{color:#aaa;border-bottom:1px solid #222;padding-bottom:5px;margin:22px 0 10px;font-size:.8em;text-transform:uppercase;letter-spacing:1px}
+    .ep{background:#111;border-left:3px solid #ff4444;padding:11px 15px;margin:8px 0;border-radius:4px}
+    .method{color:#4caf50;font-weight:bold;margin-right:8px}
+    .path{color:#64b5f6;font-weight:bold}
+    .engine{font-size:.72em;color:#555;margin-left:8px}
+    .params{color:#888;font-size:.82em;margin-top:6px;line-height:1.9}
+    .p{color:#ffb74d}
+    .eg{color:#444;font-size:.78em;margin-top:3px}
+  </style>
+</head>
+<body>
+  <h1>🎬 YouTube API</h1>
+  <div class="badges">
+    <span class="badge b1">📊 Metadata: YouTube Data API v3 (Google)</span>
+    <span class="badge b2">⬇️ Downloads: Innertube (free, no key)</span>
+  </div>
+
+  <h2>Search</h2>
+  <div class="ep">
+    <span class="method">GET</span><span class="path">/api/search</span><span class="engine">· Google Data API v3</span>
+    <div class="params">
+      <span class="p">?q=</span> keyword &nbsp;|&nbsp;
+      <span class="p">&amp;type=video|channel|playlist</span> &nbsp;|&nbsp;
+      <span class="p">&amp;order=relevance|date|viewCount|rating</span> &nbsp;|&nbsp;
+      <span class="p">&amp;maxResults=12</span> &nbsp;|&nbsp;
+      <span class="p">&amp;videoDuration=short|medium|long</span> &nbsp;|&nbsp;
+      <span class="p">&amp;pageToken=</span>
+    </div>
+    <div class="eg">Example: /api/search?q=lofi+music&amp;order=viewCount&amp;maxResults=10</div>
+  </div>
+
+  <h2>Video</h2>
+  <div class="ep">
+    <span class="method">GET</span><span class="path">/api/info</span><span class="engine">· Google Data API v3</span>
+    <div class="params"><span class="p">?url=</span> video ID or YouTube URL</div>
+    <div class="eg">Example: /api/info?url=dQw4w9WgXcQ</div>
+  </div>
+  <div class="ep">
+    <span class="method">GET</span><span class="path">/api/download</span><span class="engine">· Innertube (free)</span>
+    <div class="params">
+      <span class="p">?url=</span> video ID or URL &nbsp;|&nbsp;
+      <span class="p">&amp;type=mp4|mp3</span> &nbsp;|&nbsp;
+      <span class="p">&amp;quality=1080|720|480|360</span> (optional)
+    </div>
+    <div class="eg">Example: /api/download?url=dQw4w9WgXcQ&amp;type=mp4&amp;quality=720</div>
+  </div>
+
+  <h2>Channel</h2>
+  <div class="ep">
+    <span class="method">GET</span><span class="path">/api/channel</span><span class="engine">· Google Data API v3</span>
+    <div class="params">
+      <span class="p">?id=</span> channel ID &nbsp;|&nbsp;
+      <span class="p">&amp;videos=true</span> to include recent videos &nbsp;|&nbsp;
+      <span class="p">&amp;maxResults=12</span> &nbsp;|&nbsp;
+      <span class="p">&amp;pageToken=</span>
+    </div>
+    <div class="eg">Example: /api/channel?id=UCxxxxxxx&amp;videos=true</div>
+  </div>
+
+  <h2>Playlist</h2>
+  <div class="ep">
+    <span class="method">GET</span><span class="path">/api/playlist</span><span class="engine">· Google Data API v3</span>
+    <div class="params">
+      <span class="p">?id=</span> playlist ID &nbsp;|&nbsp;
+      <span class="p">&amp;maxResults=20</span> &nbsp;|&nbsp;
+      <span class="p">&amp;pageToken=</span>
+    </div>
+    <div class="eg">Example: /api/playlist?id=PLxxxxxxx</div>
+  </div>
+
+  <h2>Health</h2>
+  <div class="ep"><span class="method">GET</span><span class="path">/api/health</span></div>
+</body>
+</html>`;
+
+export function handleIndex() {
+  return new Response(HTML, {
+    headers: { "Content-Type": "text/html;charset=UTF-8" },
+  });
+}
